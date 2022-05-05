@@ -1,25 +1,23 @@
-// sch + tab
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   static targets = [ 'reset', 'clickme' ]
 
   connect() {
-    console.log("I'm called at page refresh!")
+    // console.log('Hello from disable_button_controller.js')
+    // console.log(this.resetTarget)
   }
 
   disable(event) {
-    const button = event.currentTarget
-    button.innerText = "Clicked"
-    button.disabled = true
-
+    console.log(event)
+    event.currentTarget.classList.add("disabled")
+    event.currentTarget.innerText = "I am ☠️!"
     this.resetTarget.classList.remove("d-none")
   }
 
   enable() {
+    this.clickmeTarget.classList.remove("disabled")
     this.clickmeTarget.innerText = "Click me again!"
-    this.clickmeTarget.disabled = false
-
     this.resetTarget.classList.add("d-none")
   }
 }
